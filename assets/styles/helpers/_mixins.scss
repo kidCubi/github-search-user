@@ -1,0 +1,109 @@
+
+/**
+* GENERATE RANDOM BG COLOR - FOR DEV USE ONLY
+ */
+
+@mixin backgrounds($c, $y) {
+  background: $c;
+  @for $i from 1 through $y {
+    $k: 3%;
+    $j: $i - 1;
+
+    @if $i == 1 {
+      &:nth-child(#{$i}) {
+        background: $c;
+      }
+    } @else {
+      &:nth-child(#{$i}) {
+        background: darken($c, ($k * $j));
+      }
+    }
+  }
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff) {
+  $src: null;
+
+  $extmods: (
+          eot: "?",
+          svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+/**
+* ASPECT-RATIO
+ */
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/**
+* FLUID-TYPE
+ */
+// Propvalue mixin
+//
+// Loops through a map and outputs each key/value
+// as a css property/value.
+@mixin propValue($map) {
+  @each $prop, $value in $map {
+    #{$prop}: #{$value};
+  }
+}
+
+/*
+* Tracking to Letter-Spacing mixin
+ */
+@mixin letterSpacing( $tracking ) {
+  letter-spacing: ( $tracking / 1000 ) * 1em;
+}
+
+/*
+Stagger delay mixin, takes 4 parameters:
+1) Nr of children, that need to stagger
+2) Initial delay of animation / transition
+3) Delay between each child's animation / transition
+4) Type of stagger. Default is "animation", also takes "transition"
+*/
+@mixin stagger-delay($i, $initial-delay, $stagger-delay, $type: animation) {
+  @while $i > 0 {
+    &:nth-of-type(#{$i}) {
+      #{$type}-delay: $initial-delay + $stagger-delay * $i;
+    }
+    $i: $i - 1;
+  }
+}

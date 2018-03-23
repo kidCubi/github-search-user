@@ -1,0 +1,13 @@
+@import './helpers/_variables.scss';
+@import './helpers/_typography.scss';
+@import './helpers/_mixins.scss';
+@import './helpers/_functions.scss';
+
+@import 'results/Results.module.scss';
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}

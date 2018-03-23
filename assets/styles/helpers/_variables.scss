@@ -1,0 +1,89 @@
+/**
+ * Color variables
+ */
+$c-white: #FFFFFF;
+$c-black: #000000;
+$c-darkblue: #003764;
+$c-lightblue: #6BBEDE;
+$c-yellow: #FFD800;
+$c-lightYellow: #FFE481;
+$c-lightgray: #BCBCBB;
+$c-mediumgray: #757575;
+$c-red: #D0021B;
+$c-purple: #463061;
+
+/**
+ * Fonts variables
+ */
+$f-CarloschiLight: 'Carloschi-Light', sans-serif;
+$f-CarloschiBook: 'Carloschi-Book', sans-serif;
+$f-CarloschiRegular: 'Carloschi-Regular', sans-serif;
+$f-CarloschiSemiBold: 'Carloschi-SemiBold', sans-serif;
+$f-CarloschiBold: 'Carloschi-Bold', sans-serif;
+
+/**
+ * MediaQueries variables
+ */
+
+//Note : Sass-mq converts pixels in em
+$mq-breakpoints: (
+        tablet: 641px,
+        desktop: 1025px,
+        desktop-large: 1440px
+);
+
+$typography: (
+        h1: (base: (font-size: 27px), tablet: (font-size: 53px)),
+        title: (base: (font-size: 16px), tablet: (font-size: 24px)),
+        subTitle: (base: (font-size: 14px), tablet: (font-size: 21px)),
+        p: (base: (font-size: 14px), tablet: (font-size: 16px)),
+        name: (base: (font-size: 14px), tablet: (font-size: 23px)),
+        menu: (base: (font-size: 20px), tablet: (font-size: 16px)),
+        nameWork: (base: (font-size: 21px), tablet: (font-size: 16px)),
+        playLink: (base: (font-size: 18px), tablet: (font-size: 17px)),
+);
+
+/**
+ * Easing variables
+ */
+$snap: cubic-bezier(0, 1, .5, 1);
+$easeOutCubic: cubic-bezier(.215, .61, .355, 1);
+$easeInOutCubic: cubic-bezier(.645, .045, .355, 1);
+$easeInCirc: cubic-bezier(.6, .04, .98, .335);
+$easeOutCirc: cubic-bezier(.075, .82, .165, 1);
+$easeInOutCirc: cubic-bezier(.785, .135, .15, .86);
+$easeInExpo: cubic-bezier(.95, .05, .795, .035);
+$easeOutExpo: cubic-bezier(.19, 1, .22, 1);
+$easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+$easeInQuad: cubic-bezier(.55, .085, .68, .53);
+$easeOutQuad: cubic-bezier(.25, .46, .45, .94);
+$easeInOutQuad: cubic-bezier(.455, .03, .515, .955);
+$easeInQuart: cubic-bezier(.895, .03, .685, .22);
+$easeOutQuart: cubic-bezier(.165, .84, .44, 1);
+$easeInOutQuart: cubic-bezier(.77, 0, .175, 1);
+$easeInQuint: cubic-bezier(.755, .05, .855, .06);
+$easeOutQuint: cubic-bezier(.23, 1, .32, 1);
+$easeInOutQuint: cubic-bezier(.86, 0, .07, 1);
+$easeInSine: cubic-bezier(.47, 0, .745, .715);
+$easeOutSine: cubic-bezier(.39, .575, .565, 1);
+$easeInOutSine: cubic-bezier(.445, .05, .55, .95);
+$easeInBack: cubic-bezier(.6, -.28, .735, .045);
+$easeOutBack: cubic-bezier(.175, .885, .32, 1.275);
+$easeInOutBack: cubic-bezier(.68, -.55, .265, 1.55);
+
+/**
+ * These variables are the levels of z-index used in functions.scss
+ */
+$z-layers: (
+        "videoOverlayControls": 9003,
+        "videoOverlayBackground": 9002,
+        "videoOverlay": 9001,
+        "navigation": 8000,
+          "workInfos": 10,
+        "default": 1,
+        "base": 0,
+        "below": -1,
+        "hell": -9000
+);
+
+
