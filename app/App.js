@@ -20,10 +20,35 @@ class SearchGithubUser {
             this.searchResults = {};
             this.inputNode = inputNode;
             this.resultsNode = resultsNode;
+            this.resultsNodeList = resultsNode.querySelector('.Results__List');
+            this.resultsNodeHidden = 'Results--ishidden';
             this.queryArr = [];
             this.throttled = debounce(this.getUsers, 600);
             this.inputNode.addEventListener('input', this.onInputType, 1300, { passive: false });
+            this.displayResults = {
+                off: () => this.resultsNode.classList.add(this.resultsNodeHidden),
+                on: () => this.resultsNode.classList.remove(this.resultsNodeHidden)
+            }
+            this.displayResults.off();
         }
+    }
+
+    onInputType(e) {
+        (e.inputType === "deleteContentBackward" || e.inputType === "Delete") ? this.onInputTypeDelete(e) : this.onInputTypeAdd(e);
+    }
+
+    onInputTypeAdd(e) {
+        this.displayResults.on();
+        this.queryArr.push(e.data);
+        this.query = this.queryArr.join("");
+        this.throttled();
+    }
+
+    onInputTypeDelete() {
+        this.queryArr.pop();
+        this.query = this.queryArr.join("");
+        this.throttled();
+        if (this.queryArr.length === 0) this.removeSearchResults();
     }
 
     getUsers() {
@@ -45,31 +70,6 @@ class SearchGithubUser {
         }
     }
 
-    onInputType(e) {
-        (e.inputType === "deleteContentBackward" || e.inputType === "Delete") ? this.onInputTypeDelete(e) : this.onInputTypeAdd(e);
-    }
-
-    onInputTypeAdd(e) {
-        this.queryArr.push(e.data);
-        this.query = this.queryArr.join("");
-        this.throttled();
-    }
-
-    onInputTypeDelete() {
-        this.queryArr.pop();
-        this.query = this.queryArr.join("");
-        this.throttled();
-        if (this.queryArr.length === 0) {
-            this.removeSearchResults();
-        }
-    }
-
-    removeSearchResults() {
-        while (this.resultsNode.firstChild) {
-            this.resultsNode.removeChild(this.resultsNode.firstChild);
-        }
-    }
-
     createSearchResults(item) {
         const backgroundImage = `styles="background-image: url(${item.avatar_url})"`;
         const el = create({
@@ -82,7 +82,12 @@ class SearchGithubUser {
                 html: `<span>${item.login}<span ${backgroundImage}></span></span>`
             })
         })
-        this.resultsNode.appendChild(el);
+        this.resultsNodeList.appendChild(el);
+    }
+
+    removeSearchResults() {
+        while(this.resultsNodeList.children.length) this.resultsNodeList.removeChild(this.resultsNodeList.firstChild);
+        if (this.queryArr.length === 0) this.displayResults.off();
     }
 }
 
