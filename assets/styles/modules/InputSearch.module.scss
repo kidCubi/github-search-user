@@ -1,0 +1,16 @@
+@import '../helpers/_variables.scss';
+
+.Reset__InputSearch {
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.InputSearch {
+    @extend .Reset__InputSearch;
+    width: 100%;
+    border: 1px solid $c-lightgray;
+}

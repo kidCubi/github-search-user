@@ -6,11 +6,11 @@
 import 'styles/index.scss';
 
 //Load App
-import AppInit from './App';
+import SearchGithubUser from './App';
 
 // ================================
 // START YOUR APP HERE
 // ================================
-new AppInit(document.querySelector('.js-inputSearch'), document.querySelector('.js-results'));
+new SearchGithubUser(document.querySelector('.js-inputSearch'), document.querySelector('.js-results'));
 
 

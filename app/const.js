@@ -1,4 +1,3 @@
-export const GITHUB_API_KEY = "1575471e9eefecc5077d4fb164097a096e15d6c7";
 export const AXIOS_CONFIG = {
     method: "GET",
     withCredentials: true,
