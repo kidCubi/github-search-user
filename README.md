@@ -8,3 +8,8 @@ Download in current directory
 ```sh
 $ npm install
 ```
+
+## Usage
+```javascript
+new SearchGithubUser(inputNode, resultsNode);
+```

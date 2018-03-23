@@ -16,7 +16,7 @@ const appHtmlTitle = 'Webpack Boilerplate';
  */
 module.exports = {
     entry: {
-        vendor: [],
+        // vendor: [],
         bundle: path.join(dirApp, 'index')
     },
     resolve: {

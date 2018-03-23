@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 import create from 'dom-create-element';
 import { AXIOS_CONFIG } from "./const";
 
-class AppInit {
+class SearchGithubUser {
     constructor(inputNode, resultsNode) {
         if (typeof inputNode !== "object" || typeof resultsNode !== "object") {
             console.error('Parameters must be typeof node');
@@ -86,4 +86,4 @@ class AppInit {
     }
 }
 
-export default AppInit;
+export default SearchGithubUser;
