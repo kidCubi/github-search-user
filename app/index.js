@@ -11,6 +11,6 @@ import SearchGithubUser from './App';
 // ================================
 // START YOUR APP HERE
 // ================================
-new SearchGithubUser(document.querySelector('.js-inputSearch'), document.querySelector('.js-modules'));
+new SearchGithubUser(document.querySelector('.js-inputSearch'), document.querySelector('.js-results'));
 
 
