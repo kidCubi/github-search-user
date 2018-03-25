@@ -44,7 +44,7 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /(node_modules)/,
                 options: {
-                    compact: true
+                    // compact: true
                 }
             },
 
