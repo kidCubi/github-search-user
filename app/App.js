@@ -42,7 +42,7 @@ class SearchGithubUser {
 
     /**
      * @desc triggers InputAdd func if the type of the event != delete
-     * @param object – input event
+     * @param event – input event
      */
     onInputType(event) {
         (event.inputType === "deleteContentBackward" || event.inputType === "Delete") ? this.onInputTypeDelete(event) : this.onInputTypeAdd(event);
@@ -50,9 +50,10 @@ class SearchGithubUser {
 
     /**
      * @desc displays the results list and call getUsers
-     * @param object – input event
+     * @param event – input event
      */
     onInputTypeAdd(event) {
+        console.log(typeof event)
         this.displayResults.on();
         this.queryArr.push(event.data);
         this.query = this.queryArr.join("");
@@ -91,7 +92,7 @@ class SearchGithubUser {
 
     /**
      * @desc create a new DOM element with the fetched results
-     * @param object – fetched value from getUsers()
+     * @param item – fetched value from getUsers()
      */
     createSearchResults(item) {
         const backgroundImage = `styles="background-image: url(${item.avatar_url})"`;
