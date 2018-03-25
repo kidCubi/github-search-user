@@ -11,5 +11,19 @@ $ npm install
 
 ## Usage
 ```javascript
-new SearchGithubUser(inputNode, resultsNode);
+new SearchGithubUser({opts});
+```
+
+## Options
+- Input
+```javascript
+input: domNode
+ ```
+ - Results Container
+ ```javascript
+resultsContainer: domNode
+ ```
+ - Search title
+ ```javascript
+searchTitle: string
 ```
