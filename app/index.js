@@ -11,6 +11,10 @@ import SearchGithubUser from './App';
 // ================================
 // START YOUR APP HERE
 // ================================
-new SearchGithubUser(document.querySelector('.js-inputSearch'), document.querySelector('.js-results'));
+new SearchGithubUser({
+    input: document.querySelector('.js-inputSearch'),
+    resultsContainer: document.querySelector('.js-results'),
+    searchTitle: "Github users"
+});
 
 

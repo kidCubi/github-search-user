@@ -6,8 +6,8 @@ import create from 'dom-create-element';
 import { AXIOS_CONFIG } from "./const";
 
 class SearchGithubUser {
-    constructor(inputNode, resultsNode) {
-        if (typeof inputNode !== "object" || typeof resultsNode !== "object") {
+    constructor(opt) {
+        if (typeof opt.input !== "object" || typeof opt.resultsContainer !== "object") {
             console.error('Parameters must be typeof node');
         } else {
             this.getUsers = this.getUsers.bind(this);
@@ -40,17 +40,28 @@ class SearchGithubUser {
         }
     }
 
-    onInputType(e) {
-        (e.inputType === "deleteContentBackward" || e.inputType === "Delete") ? this.onInputTypeDelete(e) : this.onInputTypeAdd(e);
+    /**
+     * @desc triggers InputAdd func if the type of the event != delete
+     * @param object – input event
+     */
+    onInputType(event) {
+        (event.inputType === "deleteContentBackward" || event.inputType === "Delete") ? this.onInputTypeDelete(event) : this.onInputTypeAdd(event);
     }
 
-    onInputTypeAdd(e) {
+    /**
+     * @desc displays the results list and call getUsers
+     * @param object – input event
+     */
+    onInputTypeAdd(event) {
         this.displayResults.on();
-        this.queryArr.push(e.data);
+        this.queryArr.push(event.data);
         this.query = this.queryArr.join("");
         this.throttled();
     }
 
+    /**
+     * @desc deletes the last item of queryArr
+     */
     onInputTypeDelete() {
         this.queryArr.pop();
         this.query = this.queryArr.join("");
@@ -58,6 +69,9 @@ class SearchGithubUser {
         if (this.queryArr.length === 0) this.removeSearchResults();
     }
 
+    /**
+     * @desc fetch data from the github API
+     */
     getUsers() {
         this.removeSearchResults();
         if (this.query !== "") {
@@ -67,9 +81,7 @@ class SearchGithubUser {
             }).then((response) => {
                 if (response.status === 200) {
                     this.searchResults = response.data.items.slice(0, 4);
-                    this.searchResults.forEach((value, i) => {
-                        this.createSearchResults(value);
-                    });
+                    this.searchResults.forEach((value, i) => this.createSearchResults(value))
                 } else {
                     console.log(`err ${response}`)
                 }
@@ -77,6 +89,10 @@ class SearchGithubUser {
         }
     }
 
+    /**
+     * @desc create a new DOM element with the fetched results
+     * @param object – fetched value from getUsers()
+     */
     createSearchResults(item) {
         const backgroundImage = `styles="background-image: url(${item.avatar_url})"`;
         const el = create({
@@ -92,8 +108,11 @@ class SearchGithubUser {
         this.resultsNodeList.appendChild(el);
     }
 
+    /**
+     * @desc remove last DOM element children if the results – hide results if the results are empty
+     */
     removeSearchResults() {
-        while(this.resultsNodeList.children.length) this.resultsNodeList.removeChild(this.resultsNodeList.firstChild);
+        while (this.resultsNodeList.children.length) this.resultsNodeList.removeChild(this.resultsNodeList.firstChild);
         if (this.queryArr.length === 0) this.displayResults.off();
     }
 }
